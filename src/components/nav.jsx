@@ -1,10 +1,9 @@
 import { Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle } from "flowbite-react";
-import Link from "next/link";
 
-export function Component() {
+export function nav() {
   return (
     <Navbar fluid rounded>
-      <NavbarBrand as={Link} href="https://flowbite-react.com">
+      <NavbarBrand  href="https://flowbite-react.com">
         <img src="/favicon.svg" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Flowbite React</span>
       </NavbarBrand>
@@ -13,7 +12,7 @@ export function Component() {
         <NavbarLink href="#" active>
           Home
         </NavbarLink>
-        <NavbarLink as={Link} href="#">
+        <NavbarLink href="#">
           About
         </NavbarLink>
         <NavbarLink href="#">Services</NavbarLink>
