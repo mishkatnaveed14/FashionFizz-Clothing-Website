@@ -1,15 +1,14 @@
 import './App.css'
-import { nav } from './components/nav'
+import FashionFizzNav  from './components/nav'
 
 function App() {
-
-
-  return(
-    <>
-    <nav/>
-    {nav()}
-    </>
-  )
+   return (
+    <main className="min-h-screen bg-[#fffdfa] pb-20 text-[#111111] lg:pb-0">
+      <FashionFizzNav />
+     
+    </main>
+  );
 }
+
 
 export default App
