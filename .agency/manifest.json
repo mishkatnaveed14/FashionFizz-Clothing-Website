@@ -1,0 +1,264 @@
+{
+ "routing": "Plain text description of routes:\n- Public: / (Home), /collections/unstitched (Unstitched Fabrics), /collections/ready-to-wear (Pret), /collections/men-and-kids (Men & Kids), /collections/home-and-fragrances (Home & Fragrances), /sale (Seasonal Sale), /track-order (Track Order), /login, /signup, /product/:id (Product Detail with 3D)\n- User Area (requires Customer guard): /account/dashboard, /account/orders, /account/wishlist, /account/rewards\n- Admin Area (requires Admin/Manager guard): /admin/dashboard, /admin/products, /admin/orders, /admin/inventory, /admin/discounts",
+ "notes": "Store API includes: getProducts, addProduct, updateProduct, deleteProduct, getOrders, updateOrderStatus, getWishlist, toggleWishlist, getCart, addToCart, removeFromCart, updateCartQuantity, clearCart, getDiscounts, addDiscount, updateDiscount, deleteDiscount, addLoyaltyPoints, trackOrder, login, signup, logout. Props convention: standard React components with destructured props, explicit fallback values, and Tailwind CSS utility classes.",
+ "files": [
+  {
+   "path": "src/lib/store.jsx",
+   "layer": 0,
+   "purpose": "StoreProvider + useStore(): auth with roles (demo admin + demo user), CRUD + actions for every entity in the spec, cart/bookings/etc. as needed, toast notify, all persisted in localStorage",
+   "exports": "named: StoreProvider, useStore"
+  },
+  {
+   "path": "src/lib/data.js",
+   "layer": 0,
+   "purpose": "seed data for every entity in the spec (realistic, 8-15 items where lists make sense) + helpers like formatters",
+   "exports": "named: seed arrays + helper functions (see file)"
+  },
+  {
+   "path": "src/hooks/useDevice.js",
+   "layer": 0,
+   "purpose": "default export useDevice() -> { isMobile, isTablet, reduceMotion, canUse3D } (canUse3D = WebGL available && !isMobile && !reduceMotion)",
+   "exports": "default: useDevice"
+  },
+  {
+   "path": "index.html",
+   "layer": 0,
+   "purpose": "HTML shell: <div id=\"root\">, module script /src/main.jsx, Google Font <link> tags from the design system, title + meta, theme-color",
+   "exports": "n/a"
+  },
+  {
+   "path": "src/main.jsx",
+   "layer": 0,
+   "purpose": "createRoot, BrowserRouter, StoreProvider, imports index.css and App",
+   "exports": "n/a"
+  },
+  {
+   "path": "src/index.css",
+   "layer": 0,
+   "purpose": "@import \"tailwindcss\"; @theme tokens from the design system, base styles, grain/texture utilities, scrollbar, selection, reduced-motion rules",
+   "exports": "n/a"
+  },
+  {
+   "path": "src/components/ui.jsx",
+   "layer": 1,
+   "purpose": "shared UI kit as named exports: Button, Card, Badge, Input, Select, Textarea, Modal, Reveal (scroll reveal), SectionTitle, Stat, EmptyState, Toaster, Table helpers - in the design system's signature style",
+   "exports": "named: Button, Card, Badge, Input, Select, Textarea, Modal, Reveal, SectionTitle, Stat, EmptyState, Toaster"
+  },
+  {
+   "path": "src/components/Loader.jsx",
+   "layer": 1,
+   "purpose": "named exports IntroLoader (branded first-load preloader: animated brand mark + progress counter, ~1.8s, plays once per session, then reveals the site) and RouteLoader (small branded fallback for Suspense)",
+   "exports": "named: IntroLoader, RouteLoader"
+  },
+  {
+   "path": "src/components/ProtectedRoute.jsx",
+   "layer": 1,
+   "purpose": "default export ProtectedRoute({role, children}) redirecting to /login, wrong role -> /",
+   "exports": "default"
+  },
+  {
+   "path": "src/components/ErrorBoundary.jsx",
+   "layer": 1,
+   "purpose": "default export ErrorBoundary (class component) that shows the error message + stack on screen in a styled box with a reload button, so a crash is never a silent blank page",
+   "exports": "default"
+  },
+  {
+   "path": "src/App.jsx",
+   "layer": 1,
+   "purpose": "all routes from the MANIFEST routing plan, every page lazy-loaded with Suspense + RouteLoader, IntroLoader on first visit, Toaster, guards for user/admin areas; the whole route tree is wrapped in ErrorBoundary",
+   "exports": "default"
+  },
+  {
+   "path": "src/components/Navbar.jsx",
+   "layer": 1,
+   "purpose": "Global top navigation bar with brand logo, multi-tier category links, search trigger, wishlist count, cart drawer trigger, and user profile menu",
+   "exports": "default"
+  },
+  {
+   "path": "src/components/Footer.jsx",
+   "layer": 1,
+   "purpose": "Global footer with brand statement, quick links, newsletter subscription form, copyright, and social links",
+   "exports": "default"
+  },
+  {
+   "path": "src/components/CartDrawer.jsx",
+   "layer": 1,
+   "purpose": "Slide-over shopping cart drawer with item list, quantity adjusters, promo code input, subtotal calculation, and checkout CTA",
+   "exports": "default"
+  },
+  {
+   "path": "src/components/SearchModal.jsx",
+   "layer": 1,
+   "purpose": "Full-screen or modal search overlay with live product filtering, category tags, and instant results",
+   "exports": "default"
+  },
+  {
+   "path": "src/components/ProductCard.jsx",
+   "layer": 1,
+   "purpose": "Reusable product card displaying clothing thumbnail, title, category, price, sale tag, color swatches, quick add to cart, and wishlist button",
+   "exports": "default"
+  },
+  {
+   "path": "src/components/FilterSidebar.jsx",
+   "layer": 1,
+   "purpose": "Advanced filter drawer/sidebar for categories, price range, fabric type, colors, and size availability",
+   "exports": "default"
+  },
+  {
+   "path": "src/components/UserLayout.jsx",
+   "layer": 1,
+   "purpose": "Customer portal layout with sidebar navigation for dashboard, orders, wishlist, and rewards, rendering Outlet",
+   "exports": "default"
+  },
+  {
+   "path": "src/components/AdminLayout.jsx",
+   "layer": 1,
+   "purpose": "Admin control panel layout with sidebar navigation for overview, products, orders, inventory, and discounts, rendering Outlet",
+   "exports": "default"
+  },
+  {
+   "path": "src/three/Scene3D.jsx",
+   "layer": 2,
+   "purpose": "default export Scene3D({variant, className, ...}) wrapper: if !canUse3D render Fallback3D, else lazy-load the heavy scene; Canvas dpr={[1,1.5]}, pause (frameloop never) when off screen via IntersectionObserver",
+   "exports": "default"
+  },
+  {
+   "path": "src/components/Fallback3D.jsx",
+   "layer": 2,
+   "purpose": "default export Fallback3D({variant,...}) lightweight CSS-3D (perspective + rotateX/Y on pointer/gyro-free gentle keyframes) themed to the project; used on phones",
+   "exports": "default"
+  },
+  {
+   "path": "src/three/FabricViewer3D.jsx",
+   "layer": 2,
+   "purpose": "Interactive 3D product viewer on product detail pages allowing users to rotate unstitched fabric folds and inspect embroidery details closely",
+   "exports": "default"
+  },
+  {
+   "path": "src/three/HeroScene3D.jsx",
+   "layer": 2,
+   "purpose": "Hero background canvas featuring procedural draped silk and unstitched luxury folds using Three.js and R3F",
+   "exports": "default"
+  },
+  {
+   "path": "src/pages/Home.jsx",
+   "layer": 3,
+   "purpose": "Home page featuring hero banner with 3D background, seasonal sale highlights, featured category grids, and trending collections",
+   "exports": "default"
+  },
+  {
+   "path": "src/pages/CatalogUnstitched.jsx",
+   "layer": 3,
+   "purpose": "Unstitched fabrics catalog browsing lawn, winter, and festive unstitched suits with advanced fabric and color filters",
+   "exports": "default"
+  },
+  {
+   "path": "src/pages/CatalogPret.jsx",
+   "layer": 3,
+   "purpose": "Ready to wear (Pret) collection exploring ready-to-wear kurtis, two-piece, and three-piece outfits",
+   "exports": "default"
+  },
+  {
+   "path": "src/pages/CatalogMenKids.jsx",
+   "layer": 3,
+   "purpose": "Men and kids shopping page for kameez shalwar, waistcoats, and kids festive wear",
+   "exports": "default"
+  },
+  {
+   "path": "src/pages/CatalogHomeFragrances.jsx",
+   "layer": 3,
+   "purpose": "Home and fragrances catalog featuring bedding sets, home accessories, and signature perfumes",
+   "exports": "default"
+  },
+  {
+   "path": "src/pages/SeasonalSale.jsx",
+   "layer": 3,
+   "purpose": "Seasonal sale page showcasing discounted items up to 50% off across all categories",
+   "exports": "default"
+  },
+  {
+   "path": "src/pages/TrackOrder.jsx",
+   "layer": 3,
+   "purpose": "Order tracking page allowing guest and registered users to check live delivery status using order ID with form validation",
+   "exports": "default"
+  },
+  {
+   "path": "src/pages/ProductDetail.jsx",
+   "layer": 3,
+   "purpose": "Product detail page embedding interactive 3D fabric inspector, size/color variant selectors, description, and add-to-cart workflow",
+   "exports": "default"
+  },
+  {
+   "path": "src/pages/Checkout.jsx",
+   "layer": 3,
+   "purpose": "Checkout and shipping details form with address input, payment method selection, order summary, and order placement success confirmation",
+   "exports": "default"
+  },
+  {
+   "path": "src/pages/Login.jsx",
+   "layer": 3,
+   "purpose": "User login form with validation, error states, demo credential helpers for admin/customer roles, and link to signup",
+   "exports": "default"
+  },
+  {
+   "path": "src/pages/Signup.jsx",
+   "layer": 3,
+   "purpose": "User signup form with validation, password confirmation, role selection, and instant account creation",
+   "exports": "default"
+  },
+  {
+   "path": "src/pages/UserDashboard.jsx",
+   "layer": 3,
+   "purpose": "Customer dashboard overview of recent orders, saved addresses, and loyalty reward points balance",
+   "exports": "default"
+  },
+  {
+   "path": "src/pages/UserOrders.jsx",
+   "layer": 3,
+   "purpose": "Customer order history detailed view of past purchases, invoices, and return/exchange request form trigger",
+   "exports": "default"
+  },
+  {
+   "path": "src/pages/UserWishlist.jsx",
+   "layer": 3,
+   "purpose": "Customer wishlist displaying saved favorite items for future purchases or price drop alerts",
+   "exports": "default"
+  },
+  {
+   "path": "src/pages/UserRewards.jsx",
+   "layer": 3,
+   "purpose": "Rewards and lookbook page viewing loyalty points balance and saved seasonal fashion styling inspirations",
+   "exports": "default"
+  },
+  {
+   "path": "src/pages/AdminDashboard.jsx",
+   "layer": 3,
+   "purpose": "Admin overview page showing sales analytics, revenue reports, low stock alerts, and recent transactions",
+   "exports": "default"
+  },
+  {
+   "path": "src/pages/AdminProducts.jsx",
+   "layer": 3,
+   "purpose": "Admin product management page providing full CRUD for clothing items, pricing, SKU variants, and categories",
+   "exports": "default"
+  },
+  {
+   "path": "src/pages/AdminOrders.jsx",
+   "layer": 3,
+   "purpose": "Admin order fulfillment page to manage customer orders, update shipping statuses, and process returns/exchanges",
+   "exports": "default"
+  },
+  {
+   "path": "src/pages/AdminInventory.jsx",
+   "layer": 3,
+   "purpose": "Admin inventory control page to track stock levels across warehouses and manage size/color matrices",
+   "exports": "default"
+  },
+  {
+   "path": "src/pages/AdminDiscounts.jsx",
+   "layer": 3,
+   "purpose": "Admin discounts page to configure seasonal sale percentages, promo codes, and homepage hero sliders",
+   "exports": "default"
+  }
+ ]
+}

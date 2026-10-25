@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #F8F7F2;
+  --color-paper-surface: #FFFFFF;
+  --color-ink: #1F211E;
+  --color-ink-muted: #77746D;
+  --color-brand: #6B7F68;
+  --color-accent: #7A5C48;
+  --color-soft: #F1EDE5;
+  --color-line: #E5E0D7;
+  --color-chrome: #A89C8E;
+
+  --e-global-color-primary: #6B7F68;
+  --e-global-color-secondary: #1F211E;
+  --e-global-color-text: #1F211E;
+  --e-global-color-accent: #7A5C48;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'Inter', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-brand);
+  color: #FFFFFF;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 500;
+}
+
+.font-mono {
+  font-family: var(--font-body);
+  letter-spacing: 0.035em;
+}
+
+button, a, input, select, textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a, button, [role="button"] {
+  transition-property: color, background-color, border-color, box-shadow, transform, opacity;
+  transition-duration: 200ms;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-paper);
+}
+::-webkit-scrollbar-thumb {
+  background: #C7C3B9;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand);
+}
+
+/* Texture Overlay */
+.noise-overlay {
+  background-image: radial-gradient(rgba(31, 33, 30, 0.035) 0.7px, transparent 0);
+  background-size: 18px 18px;
+}
+
+.editorial-image {
+  position: relative;
+  overflow: hidden;
+  background: #E8DCC6;
+}
+
+.editorial-image img {
+  transition: transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.editorial-image:hover img {
+  transform: scale(1.045);
+}
+
+.editorial-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
