@@ -74,7 +74,12 @@ export default function ProductDetail() {
                 </Badge>
               )}
             </div>
-            <span className="absolute bottom-5 left-5 font-body text-[10px] font-medium uppercase tracking-[0.2em] text-white/90">
+            {isDemoImage && (
+              <span className="absolute bottom-5 left-5 rounded-full border border-white/60 bg-white/90 px-3 py-1.5 font-body text-[9px] font-semibold uppercase tracking-[0.14em] text-ink backdrop-blur-sm">
+                Editorial sample image
+              </span>
+            )}
+            <span className="sr-only">
               {product.sub_category} · {product.sku}
             </span>
           </div>
@@ -142,7 +147,7 @@ export default function ProductDetail() {
                     onClick={() => updateSelection({ size })}
                     className={`font-mono text-xs px-4 py-2 rounded-[2px] border transition-all cursor-pointer ${
                       selectedSize === size
-                        ? 'border-brand bg-brand text-ink font-bold'
+                      ? 'border-brand bg-brand text-white font-bold'
                         : 'border-line bg-paper-surface text-ink-muted hover:border-chrome'
                     }`}
                   >
@@ -182,7 +187,7 @@ export default function ProductDetail() {
               onClick={() => toggleWishlist(product.id)}
               className={`flex h-12 w-12 items-center justify-center rounded-full border transition-colors cursor-pointer ${
                 isWishlisted
-                  ? 'border-brand bg-brand text-ink'
+                  ? 'border-brand bg-brand text-white'
                   : 'border-line bg-paper-surface text-ink-muted hover:text-ink hover:border-chrome'
               }`}
               title="Save to Wishlist"

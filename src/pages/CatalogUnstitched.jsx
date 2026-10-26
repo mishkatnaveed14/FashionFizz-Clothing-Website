@@ -71,7 +71,7 @@ export default function CatalogUnstitched() {
                   onClick={() => setSelectedSubCat(sub)}
                   className={`font-mono text-xs uppercase px-4 py-2.5 rounded-[2px] transition-colors cursor-pointer ${
                     selectedSubCat === sub
-                      ? 'bg-brand text-ink font-bold'
+                      ? 'bg-brand text-white font-bold'
                       : 'bg-paper border border-line text-ink-muted hover:text-ink hover:border-chrome'
                   }`}
                 >

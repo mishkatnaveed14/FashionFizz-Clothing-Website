@@ -32,7 +32,7 @@ export default function SeasonalSale() {
     <div className="min-h-screen py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Banner */}
       <Reveal className="mb-12 bg-gradient-to-r from-brand/20 via-paper-surface to-accent/10 border border-brand/40 p-12 rounded-[4px] relative overflow-hidden">
-        <div className="absolute top-0 right-0 bg-brand text-ink font-mono text-xs font-bold px-6 py-2 uppercase tracking-widest rotate-12 translate-x-6 translate-y-4">
+        <div className="absolute top-0 right-0 bg-brand text-white font-mono text-xs font-bold px-6 py-2 uppercase tracking-widest rotate-12 translate-x-6 translate-y-4">
           Up to 50% Off
         </div>
         <div className="flex items-center gap-3 text-brand mb-3">
@@ -66,7 +66,7 @@ export default function SeasonalSale() {
               onClick={() => setCategoryFilter(cat)}
               className={`font-mono text-xs uppercase px-4 py-2 rounded-[2px] transition-all cursor-pointer whitespace-nowrap ${
                 categoryFilter === cat
-                  ? 'bg-brand text-ink font-bold shadow-[2px_2px_0px_var(--color-chrome)]'
+                  ? 'bg-brand text-white font-bold shadow-[2px_2px_0px_var(--color-chrome)]'
                   : 'bg-paper-surface text-ink-muted border border-line hover:text-ink'
               }`}
             >

@@ -74,7 +74,7 @@ export default function SearchModal() {
                 onClick={() => setSelectedCategory(cat)}
                 className={`font-mono text-xs uppercase px-4 py-2 rounded-full whitespace-nowrap transition-all cursor-pointer ${
                   selectedCategory === cat
-                    ? 'bg-brand text-ink font-bold'
+                    ? 'bg-brand text-white font-bold'
                     : 'bg-paper-surface border border-line text-ink-muted hover:text-ink'
                 }`}
               >

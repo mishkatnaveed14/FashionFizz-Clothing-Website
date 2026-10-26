@@ -21,7 +21,7 @@ export default function UserLayout() {
           <h1 className="mt-2 text-3xl text-ink sm:text-4xl">Good to see you, {user?.name?.split(' ')[0] || 'again'}.</h1>
           <p className="mt-2 max-w-xl font-body text-sm text-ink-muted">Your orders, saved pieces and rewards—together in one place.</p>
         </div>
-        <Link to="/collections/ready-to-wear" className="inline-flex shrink-0 items-center gap-2 rounded-full bg-brand px-5 py-3 font-body text-xs font-semibold text-white hover:bg-[#586C55]">
+        <Link to="/collections/ready-to-wear" className="inline-flex shrink-0 items-center gap-2 rounded-full bg-brand px-5 py-3 font-body text-xs font-semibold text-white hover:bg-[#7E3146]">
           Continue exploring <ArrowRight size={15} />
         </Link>
       </section>
@@ -50,7 +50,7 @@ export default function UserLayout() {
                   className={({ isActive }) =>
                     `flex items-center gap-3 px-4 py-3 rounded-[2px] font-mono text-xs uppercase tracking-wider transition-all ${
                       isActive
-                        ? 'bg-brand text-ink font-bold'
+                        ? 'bg-brand text-white font-bold'
                         : 'text-ink-muted hover:text-ink hover:bg-soft'
                     }`
                   }

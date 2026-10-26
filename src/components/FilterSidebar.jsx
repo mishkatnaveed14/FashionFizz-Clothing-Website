@@ -155,7 +155,7 @@ export default function FilterSidebar({
           </button>
           <button
             onClick={onClose}
-            className="flex-1 font-mono text-xs uppercase font-bold py-3 bg-brand text-ink rounded-[2px] hover:opacity-90 transition-opacity cursor-pointer"
+            className="flex-1 font-mono text-xs uppercase font-bold py-3 bg-brand text-white rounded-[2px] hover:opacity-90 transition-opacity cursor-pointer"
           >
             Apply Filters
           </button>

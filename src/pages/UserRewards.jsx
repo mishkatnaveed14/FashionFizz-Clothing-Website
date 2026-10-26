@@ -39,7 +39,7 @@ export default function UserRewards() {
       {/* Points Overview Card */}
       <Card className="bg-gradient-to-r from-paper-surface to-soft border-brand/40 p-8 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-6">
-          <div className="w-16 h-16 bg-brand text-ink rounded-[4px] flex items-center justify-center font-display font-bold text-2xl shadow-[4px_4px_0px_var(--color-chrome)]">
+          <div className="w-16 h-16 bg-brand text-white rounded-[4px] flex items-center justify-center font-display font-bold text-2xl shadow-[4px_4px_0px_var(--color-chrome)]">
             <Award size={32} />
           </div>
           <div className="flex flex-col">

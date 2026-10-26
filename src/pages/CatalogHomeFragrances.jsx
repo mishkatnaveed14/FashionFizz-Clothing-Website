@@ -59,7 +59,7 @@ export default function CatalogHomeFragrances() {
               onClick={() => setSubFilter(cat)}
               className={`font-mono text-xs uppercase px-4 py-2 rounded-[2px] transition-all cursor-pointer whitespace-nowrap ${
                 subFilter === cat
-                  ? 'bg-brand text-ink font-bold shadow-[2px_2px_0px_var(--color-chrome)]'
+                  ? 'bg-brand text-white font-bold shadow-[2px_2px_0px_var(--color-chrome)]'
                   : 'bg-paper-surface text-ink-muted border border-line hover:text-ink'
               }`}
             >
