@@ -105,11 +105,11 @@ const productPhotos = {
   'prod-9': photo('1616486338812-3dadae4b4ace', 'Editorial placeholder for a cotton bedspread'),
   'prod-10': photo('1594035910387-fea47794261f', 'Editorial placeholder for a home fragrance'),
   'prod-11': photo('1664891408817-bb950dfd0bfd', 'Editorial placeholder for an embroidered lawn suit'),
-  'prod-12': photo('1759720883040-af9be070929e', 'Editorial placeholder for a printed cambric suit'),
+  'prod-12': photo('1773439878193-e123ad70ab0e', 'Editorial placeholder for a printed cambric suit'),
   'prod-13': photo('1768825136230-34fb80291f19', 'Editorial placeholder for a cotton kurta'),
-  'prod-14': photo('1753718300087-db3869514f8a', 'Editorial placeholder for a three-piece pret set'),
+  'prod-14': photo('1655026289609-258225f94a94', 'Editorial placeholder for a three-piece pret set'),
   'prod-15': photo('1748594313161-cd7374729434', 'Editorial placeholder for a men’s kameez shalwar'),
-  'prod-16': photo('1655026289609-258225f94a94', 'Editorial placeholder for a children’s kurta'),
+  'prod-16': photo('1716655359683-791d415c3f4c', 'Editorial placeholder for children’s festive wear'),
   'prod-17': photo('1778145792155-708f364bd772', 'Editorial placeholder for a quilted bedspread'),
   'prod-18': photo('1654524437221-2903a6cdb371', 'Editorial placeholder for an amber fragrance set')
 };
@@ -155,6 +155,10 @@ export function getEditorialImage(name, width = 1600, height = null) {
 
 export function getCategoryImage(category, width = 1200, height = null) {
   return getUnsplashUrl(categoryPhotos[category], width, height);
+}
+
+export function getCategoryPhoto(category) {
+  return categoryPhotos[category] || null;
 }
 
 function isRemoteImage(image) {

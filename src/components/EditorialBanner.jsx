@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { getCategoryImage } from '../lib/productImages';
+import { getCategoryImage, getCategoryPhoto } from '../lib/productImages';
+import ImageWithFallback from './ImageWithFallback';
 
 export default function EditorialBanner({
   image = 'pret',
@@ -15,11 +16,12 @@ export default function EditorialBanner({
   return (
     <section className={`editorial-section mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8 ${className}`}>
       <div className="editorial-image group relative flex min-h-[300px] items-end overflow-hidden rounded-2xl sm:min-h-[360px]">
-        <img
+        <ImageWithFallback
           src={getCategoryImage(image, 1800)}
-          alt=""
+          alt={getCategoryPhoto(image)?.alt || title}
           loading="lazy"
           className="absolute inset-0 h-full w-full object-cover"
+          fallbackClassName="bg-[#F2E7E4]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent" />
         <div className="relative z-10 max-w-xl px-7 py-9 text-white sm:px-12 sm:py-12">

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check } from 'lucide-react';
-import { getCategoryImage } from '../lib/productImages';
+import { getCategoryImage, getCategoryPhoto } from '../lib/productImages';
+import ImageWithFallback from './ImageWithFallback';
 
 export default function CollectionFeature({
   image,
@@ -15,11 +16,12 @@ export default function CollectionFeature({
   return (
     <section className="mx-auto mb-10 grid w-full max-w-7xl gap-6 px-4 sm:px-6 lg:mb-14 lg:grid-cols-2 lg:items-center lg:gap-12 lg:px-8">
       <div className="editorial-image relative aspect-[4/3] overflow-hidden rounded-2xl bg-soft lg:aspect-[5/4]">
-        <img
+        <ImageWithFallback
           src={getCategoryImage(image, 1400)}
-          alt={title}
+          alt={getCategoryPhoto(image)?.alt || title}
           loading="lazy"
           className="h-full w-full object-cover"
+          fallbackClassName="bg-[#F2E7E4]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent" />
       </div>

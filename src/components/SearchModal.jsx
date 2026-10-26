@@ -4,7 +4,8 @@ import { useStore } from '../lib/store';
 import { formatCurrency } from '../lib/data';
 import { Search, X, ArrowRight } from 'lucide-react';
 import { AnimatePresence } from 'framer-motion';
-import { getProductImage } from '../lib/productImages';
+import { getProductImage, isDemoProductImage } from '../lib/productImages';
+import ImageWithFallback from './ImageWithFallback';
 
 export default function SearchModal() {
   const { products } = useStore();
@@ -97,11 +98,12 @@ export default function SearchModal() {
                   className="flex items-center gap-4 p-4 bg-paper-surface border border-line rounded-[4px] hover:border-brand transition-all group"
                 >
                   <div className="w-16 h-20 shrink-0 overflow-hidden bg-soft border border-line rounded-[2px]">
-                    <img
+                    <ImageWithFallback
                       src={getProductImage(p, 240)}
-                      alt=""
+                      alt={isDemoProductImage(p) ? `Editorial sample image for ${p.title}` : p.title}
                       loading="lazy"
                       className="h-full w-full object-cover"
+                      fallbackClassName="bg-[#F2E7E4]"
                     />
                   </div>
                   <div className="flex-1">

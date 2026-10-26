@@ -160,7 +160,7 @@ export const INITIAL_PRODUCTS = [
     stock_quantity: 42,
     sizes: ["Unstitched (Standard 8M)"],
     colors: ["Rosewood", "Ivory"],
-    images: ["photo-1610030469983-98e550d6193c"],
+    images: [],
     description: "Airy lawn with a delicate floral print, embroidered neckline and a lightweight printed dupatta for warm days.",
     is_featured: true
   },
@@ -175,7 +175,7 @@ export const INITIAL_PRODUCTS = [
     stock_quantity: 55,
     sizes: ["Unstitched (Standard 8M)"],
     colors: ["Sage Green", "Ivory"],
-    images: ["photo-1490481651871-ab68de25d43d"],
+    images: [],
     description: "A fresh cambric set with an all-over botanical print, neat borders and an easy everyday palette.",
     is_featured: false
   },
@@ -190,7 +190,7 @@ export const INITIAL_PRODUCTS = [
     stock_quantity: 38,
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: ["Indigo", "Ivory"],
-    images: ["photo-1539109136881-3be0616acf4b"],
+    images: [],
     description: "A relaxed cotton kurta with fine threadwork, a softly structured neckline and side slits for everyday ease.",
     is_featured: true
   },
@@ -205,7 +205,7 @@ export const INITIAL_PRODUCTS = [
     stock_quantity: 24,
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: ["Terracotta", "Sand"],
-    images: ["photo-1483985988355-763728e1935b"],
+    images: [],
     description: "A complete occasion-ready set in a fluid textured fabric, finished with a tonal dupatta and considered detailing.",
     is_featured: false
   },
@@ -220,7 +220,7 @@ export const INITIAL_PRODUCTS = [
     stock_quantity: 40,
     sizes: ["S", "M", "L", "XL"],
     colors: ["Navy", "Stone"],
-    images: ["photo-1617137968427-85924c800a22"],
+    images: [],
     description: "A clean, breathable cotton kameez shalwar with a neat collar and understated finishing for daily wear.",
     is_featured: true
   },
@@ -235,7 +235,7 @@ export const INITIAL_PRODUCTS = [
     stock_quantity: 32,
     sizes: ["4-5Y", "6-7Y", "8-9Y", "10-11Y"],
     colors: ["Ivory", "Marigold"],
-    images: ["photo-1519238263530-99bdd11df2ea"],
+    images: [],
     description: "A soft festive kurta for little celebrations, finished with subtle woven detail and easy movement.",
     is_featured: false
   },
@@ -250,7 +250,7 @@ export const INITIAL_PRODUCTS = [
     stock_quantity: 18,
     sizes: ["King Size", "Queen Size"],
     colors: ["Olive", "Ivory"],
-    images: ["photo-1616486338812-3dadae4b4ace"],
+    images: [],
     description: "A softly quilted cotton bedspread with coordinating pillow covers, designed to bring a calm, layered finish to your room.",
     is_featured: true
   },
@@ -265,7 +265,7 @@ export const INITIAL_PRODUCTS = [
     stock_quantity: 46,
     sizes: ["50ml"],
     colors: ["Amber Gold"],
-    images: ["photo-1594035910387-fea47794261f"],
+    images: [],
     description: "A warm amber and soft spice fragrance presented as an easy gift set for slow evenings and welcoming rooms.",
     is_featured: false
   }
