@@ -65,13 +65,13 @@ export default function FashionLookbook() {
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-12">
         <div className="mb-9 flex flex-col justify-between gap-5 sm:flex-row sm:items-end lg:mb-14">
           <div>
-            <span className="font-body text-[10px] font-semibold uppercase tracking-[0.22em] text-[#641E32]">The FashionFizz lookbook</span>
+            <span className="font-body text-[10px] font-semibold uppercase tracking-[0.22em] text-[#641E32]">Editorial inspiration</span>
             <h2 className="mt-3 max-w-2xl font-display text-4xl leading-tight tracking-[-0.025em] text-[#272421] sm:text-5xl lg:text-6xl">
               A world of style,<br className="hidden sm:block" /> seen your way.
             </h2>
           </div>
           <p className="max-w-sm font-body text-sm leading-6 text-[#6f6962] sm:text-right">
-            Editorial inspiration from fashion, craft and the moments that bring us together.
+            A visual reference for fashion, craft and the moments that bring us together. These photographs are not product images.
           </p>
         </div>
 
@@ -83,7 +83,7 @@ export default function FashionLookbook() {
               className={`group relative isolate block overflow-hidden rounded-[22px] bg-[#D9C7AE] ${index === 0 ? 'aspect-[4/5] lg:col-span-7 lg:row-span-2 lg:aspect-[0.88]' : 'aspect-[4/3] lg:col-span-5'}`}
             >
               <ImageWithFallback
-                src={getUnsplashUrl(look.image, 1500, 1200)}
+                src={getUnsplashUrl(look.image, index === 0 ? 1400 : 1200, index === 0 ? 1600 : 900)}
                 alt={look.image.alt}
                 loading="lazy"
                 data-lookbook-image

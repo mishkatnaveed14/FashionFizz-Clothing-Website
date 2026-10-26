@@ -14,7 +14,7 @@ gsap.registerPlugin(ScrollTrigger);
 const campaignSlides = [
   {
     image: editorialPhotos.hero,
-    eyebrow: 'FashionFizz · New season',
+    eyebrow: 'Fashion editorial · New season',
     title: <>Tradition,<br />in a new light<span className="text-[#D9C7AE]">.</span></>,
     description: 'Modern Pakistani style, shaped by thoughtful fabrics and the details that make a look your own.'
   },
@@ -75,7 +75,7 @@ export default function CinematicFashionHero() {
     const sectionTop = sectionRef.current.getBoundingClientRect().top + window.scrollY;
     const scrollDistance = window.innerHeight * (window.innerWidth >= 1024 ? 1.36 : 0.56);
     window.scrollTo({
-      top: sectionTop + scrollDistance * (index / campaignSlides.length),
+      top: sectionTop + scrollDistance * (index / (campaignSlides.length - 1)),
       behavior: reduceMotion ? 'auto' : 'smooth'
     });
   };
