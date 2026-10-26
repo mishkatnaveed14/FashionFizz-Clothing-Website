@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useStore } from '../lib/store';
-import Scene3D from '../three/Scene3D';
 import { Button, Badge } from '../components/ui';
 import { ShoppingBag, Heart, ShieldCheck, Truck, RotateCcw } from 'lucide-react';
 import { formatCurrency } from '../lib/data';
-import { getColorSwatch, getProductImage } from '../lib/productImages';
+import { getProductImage, isDemoProductImage } from '../lib/productImages';
+import ImageWithFallback from '../components/ImageWithFallback';
 import ProductCard from '../components/ProductCard';
 import EditorialBanner from '../components/EditorialBanner';
 
@@ -46,13 +46,10 @@ export default function ProductDetail() {
   }
 
   const isWishlisted = wishlist.includes(product.id);
+  const isDemoImage = isDemoProductImage(product);
   const recommendedProducts = products
     .filter((item) => item.id !== product.id && item.category === product.category)
     .slice(0, 4);
-  const viewerLabel = product.category === 'Home & Fragrances'
-    ? product.sub_category === 'Fragrances' ? 'Interactive fragrance preview' : 'Interactive bedding preview'
-    : 'Interactive outfit preview';
-
   const handleAddToCart = () => {
     addToCart(product, selectedSize, selectedColor, quantity);
   };
@@ -63,39 +60,25 @@ export default function ProductDetail() {
         
         <div className="flex flex-col gap-4">
           <div className="editorial-image group relative aspect-[4/5] max-h-[680px] overflow-hidden rounded-2xl bg-soft">
-            <img src={getProductImage(product, 1400)} alt={`${product.title} in ${selectedColor}`} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 mix-blend-color transition-colors duration-300"
-              style={{ backgroundColor: getColorSwatch(selectedColor), opacity: 0.34 }}
+            <ImageWithFallback
+              src={getProductImage(product, 1400)}
+              alt={isDemoImage ? `Editorial sample image for ${product.title}` : `${product.title} in ${selectedColor}`}
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+              fallbackClassName="bg-[#F2E7E4]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10" />
             <div className="absolute left-5 top-5 z-10 flex gap-2">
-            <Badge variant="brand">{product.category}</Badge>
-            {product.sale_price && product.sale_price < product.price && (
-              <Badge variant="accent">
-                {Math.round(((product.price - product.sale_price) / product.price) * 100)}% OFF
-              </Badge>
-            )}
-          </div>
+              <Badge variant="brand">{product.category}</Badge>
+              {product.sale_price && product.sale_price < product.price && (
+                <Badge variant="accent">
+                  {Math.round(((product.price - product.sale_price) / product.price) * 100)}% OFF
+                </Badge>
+              )}
+            </div>
             <span className="absolute bottom-5 left-5 font-body text-[10px] font-medium uppercase tracking-[0.2em] text-white/90">
               {product.sub_category} · {product.sku}
             </span>
           </div>
 
-          <div className="relative h-64 overflow-hidden rounded-2xl border border-line bg-[#F1EDE5] sm:h-80">
-            <Scene3D
-              variant="fabric"
-              className="h-full w-full"
-              selectedColor={selectedColor}
-              product={product}
-            />
-
-            <div className="absolute bottom-3 left-3 right-3 flex flex-wrap items-center justify-between gap-1 rounded-xl border border-white/60 bg-paper/90 p-3 backdrop-blur-md sm:bottom-4 sm:left-4 sm:right-4">
-              <span className="font-body text-xs font-medium text-ink">{viewerLabel}</span>
-              <span className="font-body text-[10px] text-ink-muted">Drag to rotate</span>
-            </div>
-          </div>
         </div>
 
         {/* Right: Details & Purchase Actions */}

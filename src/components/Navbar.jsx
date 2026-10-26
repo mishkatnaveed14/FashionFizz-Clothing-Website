@@ -38,7 +38,7 @@ export default function Navbar() {
   return (
     <>
       <header className="sticky top-0 z-40 border-b border-line/80 bg-paper-surface/95 shadow-[0_4px_20px_rgba(31,33,30,0.035)] backdrop-blur-xl">
-      <div className="flex min-h-7 items-center justify-center bg-[#273a31] px-3 py-1.5 text-center text-[9px] font-medium uppercase tracking-[0.16em] text-white/90 sm:text-[10px]">
+      <div className="flex min-h-7 items-center justify-center bg-[#641E32] px-3 py-1.5 text-center text-[9px] font-medium uppercase tracking-[0.16em] text-white/90 sm:text-[10px]">
         Complimentary delivery on orders over Rs. 10,000
       </div>
       <div className="mx-auto flex h-[68px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">

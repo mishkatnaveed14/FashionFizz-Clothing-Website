@@ -52,7 +52,7 @@ export function Card({ children, className = '', hover = true, ...props }) {
 export function Badge({ children, variant = 'brand', className = '', ...props }) {
   const variants = {
     brand: "bg-brand text-white font-body text-[10px] uppercase font-semibold px-3 py-1.5 rounded-full tracking-widest",
-    accent: "bg-accent text-white font-body text-[10px] uppercase font-semibold px-3 py-1.5 rounded-full tracking-widest",
+    accent: "bg-accent text-ink font-body text-[10px] uppercase font-semibold px-3 py-1.5 rounded-full tracking-widest",
     outline: "border border-chrome text-ink font-mono text-[10px] uppercase px-2.5 py-1 rounded-full tracking-widest",
     muted: "bg-soft text-ink-muted font-mono text-[10px] uppercase px-2.5 py-1 rounded-full tracking-widest"
   };

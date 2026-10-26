@@ -4,7 +4,7 @@ import { useStore } from '../lib/store';
 import { formatCurrency } from '../lib/data';
 import { Heart, ShoppingBag, Eye } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { getProductImage, getColorSwatch } from '../lib/productImages';
+import { getProductImage, getColorSwatch, isDemoProductImage } from '../lib/productImages';
 
 export default function ProductCard({ product }) {
   const { addToCart, wishlist, toggleWishlist } = useStore();
@@ -13,6 +13,7 @@ export default function ProductCard({ product }) {
   const [imageFailed, setImageFailed] = useState(false);
 
   const isWishlisted = wishlist.includes(product.id);
+  const isDemoImage = isDemoProductImage(product);
   const productImage = getProductImage(product);
   const discountPercent = product.sale_price && product.price > product.sale_price
     ? Math.round(((product.price - product.sale_price) / product.price) * 100)
@@ -20,9 +21,10 @@ export default function ProductCard({ product }) {
 
   return (
     <motion.div
-      whileHover={{ y: -3 }}
+      whileHover={{ y: -4, rotateX: 1 }}
       transition={{ duration: 0.22, ease: 'easeOut' }}
       className="group relative flex flex-col overflow-hidden rounded-[20px] border border-line bg-paper-surface shadow-[0_4px_18px_rgba(31,33,30,0.035)] transition-shadow duration-300 hover:shadow-[0_16px_38px_rgba(31,33,30,0.1)]"
+      style={{ perspective: 1200 }}
     >
       {/* Absolute Badges */}
       <div className="absolute top-3 left-3 z-10 flex flex-col gap-1">
@@ -58,7 +60,7 @@ export default function ProductCard({ product }) {
         {productImage && !imageFailed ? (
           <img
             src={productImage}
-            alt={`${product.title} in ${selectedColor}`}
+            alt={isDemoImage ? `Editorial sample image for ${product.title}` : `${product.title} in ${selectedColor}`}
             loading="lazy"
             onError={() => setImageFailed(true)}
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
@@ -68,6 +70,11 @@ export default function ProductCard({ product }) {
             <span className="font-mono text-[10px] uppercase tracking-widest text-brand">{product.category}</span>
             <span className="font-display text-lg font-semibold text-ink">{product.title}</span>
           </div>
+        )}
+        {isDemoImage && !imageFailed && (
+          <span className="absolute bottom-3 left-3 rounded-full border border-white/60 bg-white/90 px-3 py-1.5 font-body text-[8px] font-semibold uppercase tracking-[0.13em] text-ink backdrop-blur-sm">
+            Editorial sample
+          </span>
         )}
       </Link>
 
@@ -135,7 +142,7 @@ export default function ProductCard({ product }) {
           <button
             type="button"
             onClick={() => addToCart(product, selectedSize, selectedColor, 1)}
-            className="flex min-h-10 cursor-pointer items-center justify-center gap-1.5 rounded-full bg-brand py-2.5 font-body text-[11px] font-semibold text-white hover:bg-[#586C55]"
+            className="flex min-h-10 cursor-pointer items-center justify-center gap-1.5 rounded-full bg-brand py-2.5 font-body text-[11px] font-semibold text-white hover:bg-[#7E3146]"
           >
             <ShoppingBag size={14} /> Add
           </button>
