@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { useStore } from '../lib/store';
 import { CheckCircle, AlertCircle, Info, X } from 'lucide-react';
 
@@ -12,10 +12,11 @@ export function Button({
   disabled = false,
   ...props 
 }) {
+  const reduceMotion = useReducedMotion();
   const baseStyle = "inline-flex items-center justify-center font-mono text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed";
   
   const variants = {
-    primary: "bg-brand text-white px-6 py-3.5 rounded-full font-semibold hover:-translate-y-0.5 hover:bg-[#586C55] hover:shadow-[0_10px_24px_rgba(77,100,75,0.18)] active:translate-y-0",
+    primary: "bg-brand text-white px-6 py-3.5 rounded-full font-semibold hover:-translate-y-0.5 hover:bg-[#7E3146] hover:shadow-[0_10px_24px_rgba(100,30,50,0.18)] active:translate-y-0",
     secondary: "bg-paper-surface border border-line text-ink px-6 py-3.5 rounded-full hover:bg-soft hover:border-brand",
     outline: "bg-transparent border border-line text-ink-muted px-5 py-2.5 rounded-full hover:text-ink hover:border-brand",
     danger: "bg-red-700 text-white px-6 py-3.5 rounded-full font-semibold hover:bg-red-600"
@@ -26,8 +27,8 @@ export function Button({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      whileHover={!disabled ? { y: -2 } : {}}
-      whileTap={!disabled ? { y: 0 } : {}}
+      whileHover={!disabled && !reduceMotion ? { y: -2 } : {}}
+      whileTap={!disabled && !reduceMotion ? { y: 0 } : {}}
       className={`${baseStyle} ${variants[variant]} ${className}`}
       {...props}
     >
@@ -143,6 +144,9 @@ export function Modal({ isOpen, onClose, title, children }) {
 }
 
 export function Reveal({ children, className = '', delay = 0 }) {
+  const reduceMotion = useReducedMotion();
+  if (reduceMotion) return <div className={className}>{children}</div>;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}

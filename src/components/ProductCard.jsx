@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { useStore } from '../lib/store';
 import { formatCurrency } from '../lib/data';
 import { Heart, ShoppingBag, Eye } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { getProductImage, getColorSwatch, isDemoProductImage } from '../lib/productImages';
 
 export default function ProductCard({ product }) {
   const { addToCart, wishlist, toggleWishlist } = useStore();
+  const reduceMotion = useReducedMotion();
   const [selectedColor, setSelectedColor] = useState(product.colors?.[0] || 'Default');
   const [selectedSize] = useState(product.sizes?.[0] || 'Standard');
   const [imageFailed, setImageFailed] = useState(false);
@@ -21,7 +22,7 @@ export default function ProductCard({ product }) {
 
   return (
     <motion.div
-      whileHover={{ y: -4, rotateX: 1 }}
+      whileHover={reduceMotion ? {} : { y: -4, rotateX: 1 }}
       transition={{ duration: 0.22, ease: 'easeOut' }}
       className="group relative flex flex-col overflow-hidden rounded-[20px] border border-line bg-paper-surface shadow-[0_4px_18px_rgba(31,33,30,0.035)] transition-shadow duration-300 hover:shadow-[0_16px_38px_rgba(31,33,30,0.1)]"
       style={{ perspective: 1200 }}
