@@ -120,7 +120,7 @@ export default function AdminProducts() {
               key={cat}
               onClick={() => setCategoryFilter(cat)}
               className={`px-4 py-2 font-mono text-xs rounded-[2px] whitespace-nowrap cursor-pointer transition-colors ${
-                categoryFilter === cat ? 'bg-brand text-ink font-bold' : 'bg-paper-surface border border-line text-ink-muted hover:text-ink'
+                categoryFilter === cat ? 'bg-brand text-white font-bold' : 'bg-paper-surface border border-line text-ink-muted hover:text-ink'
               }`}
             >
               {cat}

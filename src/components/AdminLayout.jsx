@@ -18,7 +18,7 @@ export default function AdminLayout() {
       <aside className="w-full lg:w-72 bg-paper-surface border-r border-line p-6 flex flex-col justify-between shrink-0">
         <div className="flex flex-col gap-8">
           <div className="flex items-center gap-3 pb-6 border-b border-line">
-            <div className="w-10 h-10 bg-brand text-ink flex items-center justify-center font-display font-bold">
+            <div className="w-10 h-10 bg-brand text-white flex items-center justify-center font-display font-bold">
               <ShieldCheck size={20} />
             </div>
             <div className="flex flex-col">
@@ -37,7 +37,7 @@ export default function AdminLayout() {
                   className={({ isActive }) =>
                     `flex items-center gap-3 px-4 py-3 rounded-[2px] font-mono text-xs uppercase tracking-wider transition-all ${
                       isActive
-                        ? 'bg-brand text-ink font-bold'
+                        ? 'bg-brand text-white font-bold'
                         : 'text-ink-muted hover:text-ink hover:bg-soft'
                     }`
                   }

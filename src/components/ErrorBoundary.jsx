@@ -45,7 +45,7 @@ export default class ErrorBoundary extends Component {
             <div className="flex justify-end gap-4">
               <button
                 onClick={this.handleReload}
-                className="inline-flex items-center gap-2 bg-brand text-ink font-mono text-xs uppercase tracking-wider font-bold px-6 py-3.5 rounded-[2px] hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_var(--color-chrome)] transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 bg-brand text-white font-mono text-xs uppercase tracking-wider font-bold px-6 py-3.5 rounded-[2px] hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_var(--color-chrome)] transition-all cursor-pointer"
               >
                 <RefreshCw size={16} /> Reinitialize Atelier
               </button>

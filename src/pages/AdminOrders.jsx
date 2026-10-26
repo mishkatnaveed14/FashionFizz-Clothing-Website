@@ -40,7 +40,7 @@ export default function AdminOrders() {
             key={s}
             onClick={() => setStatusFilter(s)}
             className={`px-4 py-2 font-mono text-xs rounded-[2px] whitespace-nowrap cursor-pointer transition-colors ${
-              statusFilter === s ? 'bg-brand text-ink font-bold' : 'bg-paper-surface border border-line text-ink-muted hover:text-ink'
+              statusFilter === s ? 'bg-brand text-white font-bold' : 'bg-paper-surface border border-line text-ink-muted hover:text-ink'
             }`}
           >
             {s}
