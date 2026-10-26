@@ -6,6 +6,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ImageWithFallback from './ImageWithFallback';
 import Scene3D from '../three/Scene3D';
+import useDevice from '../hooks/useDevice';
 import { editorialPhotos, getUnsplashUrl } from '../lib/productImages';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -35,8 +36,11 @@ export default function CinematicFashionHero() {
   const sectionRef = useRef(null);
   const imageRefs = useRef([]);
   const [activeSlide, setActiveSlide] = useState(0);
+  const { reduceMotion } = useDevice();
 
   useLayoutEffect(() => {
+    if (reduceMotion) return undefined;
+
     const context = gsap.context(() => {
       const imageElements = imageRefs.current.filter(Boolean);
       if (imageElements.length !== campaignSlides.length) return;
@@ -64,7 +68,7 @@ export default function CinematicFashionHero() {
     }, sectionRef);
 
     return () => context.revert();
-  }, []);
+  }, [reduceMotion]);
 
   const moveToSlide = (index) => {
     if (!sectionRef.current) return;
@@ -72,13 +76,13 @@ export default function CinematicFashionHero() {
     const scrollDistance = window.innerHeight * (window.innerWidth >= 1024 ? 1.36 : 0.56);
     window.scrollTo({
       top: sectionTop + scrollDistance * (index / campaignSlides.length),
-      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+      behavior: reduceMotion ? 'auto' : 'smooth'
     });
   };
 
   return (
-    <section id="fashion-hero" ref={sectionRef} className="relative h-[175svh] lg:h-[260svh]">
-      <div className="sticky top-[96px] flex h-[calc(100svh-96px)] min-h-[480px] items-end overflow-hidden bg-[#272421] lg:items-center">
+    <section id="fashion-hero" ref={sectionRef} className={reduceMotion ? 'relative' : 'relative h-[175svh] lg:h-[260svh]'}>
+      <div className={`${reduceMotion ? 'relative' : 'sticky top-[96px]'} flex h-[calc(100svh-96px)] min-h-[480px] items-end overflow-hidden bg-[#272421] lg:items-center`}>
         {campaignSlides.map((slide, index) => (
           <ImageWithFallback
             key={slide.image.id}
@@ -136,18 +140,22 @@ export default function CinematicFashionHero() {
         </div>
 
         <div className="absolute bottom-0 left-6 right-6 z-20 flex items-center justify-between border-t border-white/25 py-4 text-white/80 sm:left-10 sm:right-10 lg:left-16 lg:right-16">
-          <div className="flex items-center gap-2" aria-label="Campaign story progress">
-            {campaignSlides.map((slide, index) => (
-              <button
-                key={slide.eyebrow}
-                type="button"
-                onClick={() => moveToSlide(index)}
-                aria-label={`Go to campaign scene ${index + 1}: ${slide.eyebrow}`}
-                aria-current={activeSlide === index ? 'step' : undefined}
-                className={`h-1.5 rounded-full transition-all ${activeSlide === index ? 'w-9 bg-[#D9C7AE]' : 'w-4 bg-white/45 hover:bg-white/75'}`}
-              />
-            ))}
-          </div>
+          {!reduceMotion ? (
+            <div className="flex items-center gap-2" aria-label="Campaign story progress">
+              {campaignSlides.map((slide, index) => (
+                <button
+                  key={slide.eyebrow}
+                  type="button"
+                  onClick={() => moveToSlide(index)}
+                  aria-label={`Go to campaign scene ${index + 1}: ${slide.eyebrow}`}
+                  aria-current={activeSlide === index ? 'step' : undefined}
+                  className={`h-1.5 rounded-full transition-all ${activeSlide === index ? 'w-9 bg-[#D9C7AE]' : 'w-4 bg-white/45 hover:bg-white/75'}`}
+                />
+              ))}
+            </div>
+          ) : (
+            <span className="font-body text-[9px] font-medium uppercase tracking-[0.18em]">The new season</span>
+          )}
           <span className="hidden items-center gap-2 font-body text-[9px] font-medium uppercase tracking-[0.18em] sm:inline-flex">
             Scroll to explore <ArrowDown size={13} />
           </span>
