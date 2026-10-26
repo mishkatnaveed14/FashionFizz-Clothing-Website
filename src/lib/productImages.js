@@ -7,8 +7,7 @@ const photo = (id, alt, sourcePage = null, photographer = 'Unsplash contributor'
   photographer
 });
 
-// Editorial references only. Product photography here is demo imagery, not FashionFizz inventory.
-// Replace each product photo with an approved catalog image when real product photography is ready.
+
 export const editorialPhotos = {
   hero: photo(
     '1773439878258-3c5fa24afa75',
@@ -111,7 +110,29 @@ const productPhotos = {
   'prod-15': photo('1748594313161-cd7374729434', 'Editorial placeholder for mens kameez shalwar'),
   'prod-16': photo('1716655359683-791d415c3f4c', 'Editorial placeholder for childrens festive wear'),
   'prod-17': photo('1778145792155-708f364bd772', 'Editorial placeholder for a quilted bedspread'),
-  'prod-18': photo('1654524437221-2903a6cdb371', 'Editorial placeholder for an amber fragrance set')
+  'prod-18': photo('1654524437221-2903a6cdb371', 'Editorial placeholder for an amber fragrance set'),
+  'prod-19': photo('1776164908649-8123a08a53bc', 'Embroidered fabric detail for a lawn suit'),
+  'prod-20': photo('1777027517918-e123ad70ab0e', 'Delicate floral embroidery on unstitched fabric'),
+  'prod-21': photo('1785835945703-cd0c72375743', 'Hand embroidery on festive fabric'),
+  'prod-22': photo('1759720883040-af9be070929e', 'Traditional outfit in a warm festive palette'),
+  'prod-23': photo('1773439878258-3c5fa24afa75', 'Embroidered formal outfit in a studio setting'),
+  'prod-24': photo('1758613654311-a9138846d52f', 'Ready-to-wear fashion studio portrait'),
+  'prod-25': photo('1768818653161-0ad28dede131', 'Fashion model in a refined studio portrait'),
+  'prod-26': photo('1539109136881-3be0616acf4b', 'Ready-to-wear fashion look'),
+  'prod-27': photo('1756483482418-3f3e4c13f9b0', 'Traditional occasion wear styling'),
+  'prod-28': photo('1747171053296-84c4e8015b24', 'Occasion fashion on the runway'),
+  'prod-29': photo('1483985988355-763728e1935b', 'Everyday fashion styling'),
+  'prod-30': photo('1467493330285-2fe6a9f97483', 'Menswear fashion portrait'),
+  'prod-31': photo('1768754538069-784adc560bd5', 'Mens festive waistcoat styling'),
+  'prod-32': photo('1617137968427-85924c800a22', 'Mens traditional fashion look'),
+  'prod-33': photo('1748594313161-cd7374729434', 'Menswear collection portrait'),
+  'prod-34': photo('1519238263530-99bdd11df2ea', 'Festive clothing for children'),
+  'prod-35': photo('1766245456897-5c86726d084d', 'Soft neutral bedding in a calm bedroom'),
+  'prod-36': photo('1594035910387-fea47794261f', 'Warm amber fragrance bottle'),
+  'prod-37': photo('1616486338812-3dadae4b4ace', 'Textured cushions and a softly styled living space'),
+  'prod-38': photo('1654524437221-2903a6cdb371', 'Elegant home fragrance presentation'),
+  'prod-39': photo('1778145792155-708f364bd772', 'Layered quilted bedding with soft texture'),
+  'prod-40': photo('1655026289609-258225f94a94', 'A refined fragrance collection')
 };
 
 const colorSwatches = {
