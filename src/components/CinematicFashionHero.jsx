@@ -91,7 +91,8 @@ export default function CinematicFashionHero() {
             fetchPriority={index === 0 ? 'high' : 'auto'}
             loading={index === 0 ? 'eager' : 'lazy'}
             className={`absolute inset-0 h-full w-full object-cover object-[58%_center] ${index === 0 ? 'opacity-100' : 'opacity-0'}`}
-            fallbackClassName="bg-[#641E32]"
+            fallbackClassName="bg-gradient-to-br from-[#641E32] via-[#7E3146] to-[#272421]"
+            fallbackLabel={null}
             imageRef={(element) => { imageRefs.current[index] = element; }}
           />
         ))}

@@ -32,7 +32,7 @@ export default function Scene3D({ variant = 'hero', className = '', ...props }) 
     return () => observer.disconnect();
   }, [variant]);
 
-  if (!canUse3D || (variant === 'fabricStory' && isMobile)) return fallback;
+  if (!canUse3D || (isMobile && isEditorialScene)) return fallback;
 
   return (
     <div ref={containerRef} className={`relative h-full w-full overflow-hidden ${className}`} aria-hidden="true">
