@@ -5,6 +5,7 @@ export default function ImageWithFallback({
   alt,
   className = '',
   fallbackClassName = '',
+  imageRef = null,
   ...imageProps
 }) {
   const [failed, setFailed] = useState(false);
@@ -30,8 +31,9 @@ export default function ImageWithFallback({
       src={src}
       alt={alt}
       className={className}
-      onError={() => setFailed(true)}
+      ref={imageRef}
       {...imageProps}
+      onError={() => setFailed(true)}
     />
   );
 }
