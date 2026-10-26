@@ -15,8 +15,8 @@ function TailoredTunic() {
   useEffect(() => {
     const trigger = ScrollTrigger.create({
       trigger: '#fashion-hero',
-      start: 'top top+=80px',
-      end: '+=180%',
+      start: 'top top+=96px',
+      end: 'bottom bottom',
       scrub: 1,
       pin: false,
       onUpdate: ({ progress }) => {
@@ -84,8 +84,8 @@ function TailoredTunic() {
       leftLapelGeometry: new THREE.ExtrudeGeometry(leftLapelShape, { depth: 0.02, bevelEnabled: true, bevelSegments: 2, bevelSize: 0.012, bevelThickness: 0.012 }),
       rightLapelGeometry: new THREE.ExtrudeGeometry(rightLapelShape, { depth: 0.02, bevelEnabled: true, bevelSegments: 2, bevelSize: 0.012, bevelThickness: 0.012 }),
       clothMaterial: new THREE.MeshStandardMaterial({
-        color: '#354631',
-        roughness: 0.82,
+        color: '#641E32',
+        roughness: 0.74,
         metalness: 0.02,
         side: THREE.DoubleSide
       })
@@ -113,21 +113,21 @@ function TailoredTunic() {
         <group key={x} position={[x, 0.48, 0.25]}>
           <mesh>
             <boxGeometry args={[0.27, 0.28, 0.035]} />
-            <meshStandardMaterial color="#485A45" roughness={0.85} />
+        <meshStandardMaterial color="#7E3146" roughness={0.84} />
           </mesh>
           <mesh position={[0, 0.1, 0.02]}>
             <boxGeometry args={[0.27, 0.025, 0.02]} />
-            <meshStandardMaterial color="#A89C8E" roughness={0.55} />
+          <meshStandardMaterial color="#D9C7AE" roughness={0.55} />
           </mesh>
           <mesh position={[0, 0.11, 0.04]}>
             <sphereGeometry args={[0.018, 10, 10]} />
-            <meshStandardMaterial color="#D7C9B3" metalness={0.35} roughness={0.5} />
+          <meshStandardMaterial color="#D9C7AE" metalness={0.35} roughness={0.5} />
           </mesh>
         </group>
       ))}
       <mesh position={[0, -0.8, 0.21]}>
         <boxGeometry args={[0.95, 0.035, 0.025]} />
-        <meshStandardMaterial color="#485A45" roughness={0.8} />
+        <meshStandardMaterial color="#7E3146" roughness={0.8} />
       </mesh>
     </group>
   );
@@ -137,19 +137,19 @@ export default function HeroScene3D({ className = '' }) {
   return (
     <div className={`w-full h-full absolute inset-0 pointer-events-none ${className}`}>
       <Canvas
-        dpr={[1, 1.5]}
-        gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
+        dpr={typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : [1, 1.25]}
+        gl={{ antialias: false, alpha: true, powerPreference: 'low-power' }}
         camera={{ position: [0, 0, 6], fov: 42 }}
       >
         <ambientLight intensity={0.75} />
         <directionalLight position={[6, 6, 6]} intensity={1.7} color="#FFF5E8" />
-        <directionalLight position={[-6, -3, -2]} intensity={0.9} color="#D1793E" />
+        <directionalLight position={[-6, -3, -2]} intensity={0.9} color="#D8B7B3" />
 
         <TailoredTunic />
 
         <Environment resolution={256}>
           <Lightformer form="rect" intensity={1.2} position={[10, 10, 10]} scale={10} color="#FFFFFF" />
-          <Lightformer form="rect" intensity={0.7} position={[-10, -5, -10]} scale={10} color="#D1793E" />
+          <Lightformer form="rect" intensity={0.7} position={[-10, -5, -10]} scale={10} color="#D8B7B3" />
         </Environment>
       </Canvas>
     </div>

@@ -20,7 +20,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="mt-16 border-t border-line bg-[#F1EDE5] pb-10 pt-14 text-ink">
+    <footer className="border-t border-line bg-[#F1EDE5] pb-10 pt-14 text-ink">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-16 border-b border-line">
           

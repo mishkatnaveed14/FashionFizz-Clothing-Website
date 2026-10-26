@@ -37,8 +37,11 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-line/80 bg-paper/90 backdrop-blur-xl">
-      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <header className="sticky top-0 z-40 border-b border-line/80 bg-paper-surface/95 shadow-[0_4px_20px_rgba(31,33,30,0.035)] backdrop-blur-xl">
+      <div className="flex min-h-7 items-center justify-center bg-[#273a31] px-3 py-1.5 text-center text-[9px] font-medium uppercase tracking-[0.16em] text-white/90 sm:text-[10px]">
+        Complimentary delivery on orders over Rs. 10,000
+      </div>
+      <div className="mx-auto flex h-[68px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         
         {/* Left: Mobile menu trigger & Brand */}
         <div className="flex items-center gap-4">
@@ -57,24 +60,24 @@ export default function Navbar() {
         </div>
 
         {/* Center: Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-8">
-          <Link to="/" className="font-body text-xs font-medium text-ink hover:text-brand transition-colors">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
+          <Link to="/" className="font-body text-[11px] font-medium text-ink hover:text-brand transition-colors">
             Home
           </Link>
-          <Link to="/collections/unstitched" className="font-body text-xs font-medium text-ink hover:text-brand transition-colors">
+          <Link to="/collections/unstitched" className="font-body text-[11px] font-medium text-ink hover:text-brand transition-colors">
             Unstitched
           </Link>
-          <Link to="/collections/ready-to-wear" className="font-body text-xs font-medium text-ink hover:text-brand transition-colors">
+          <Link to="/collections/ready-to-wear" className="font-body text-[11px] font-medium text-ink hover:text-brand transition-colors">
             Pret
           </Link>
-          <Link to="/collections/men-and-kids" className="font-body text-xs font-medium text-ink hover:text-brand transition-colors">
+          <Link to="/collections/men-and-kids" className="font-body text-[11px] font-medium text-ink hover:text-brand transition-colors">
             Men & Kids
           </Link>
-          <Link to="/collections/home-and-fragrances" className="font-body text-xs font-medium text-ink hover:text-brand transition-colors">
+          <Link to="/collections/home-and-fragrances" className="font-body text-[11px] font-medium text-ink hover:text-brand transition-colors">
             Home & Fragrances
           </Link>
-          <Link to="/sale" className="font-body text-xs font-semibold text-brand hover:opacity-80 transition-opacity">
-            Sale 50%
+          <Link to="/sale" className="font-body text-[11px] font-semibold text-brand hover:opacity-80 transition-opacity">
+            Sale
           </Link>
         </nav>
 
