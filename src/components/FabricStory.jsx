@@ -6,6 +6,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ImageWithFallback from './ImageWithFallback';
 import Scene3D from '../three/Scene3D';
+import useDevice from '../hooks/useDevice';
 import { editorialPhotos, getUnsplashUrl } from '../lib/productImages';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -34,8 +35,11 @@ export default function FabricStory() {
   const sectionRef = useRef(null);
   const photoRefs = useRef([]);
   const [activeChapter, setActiveChapter] = useState(0);
+  const { reduceMotion } = useDevice();
 
   useLayoutEffect(() => {
+    if (reduceMotion) return undefined;
+
     const context = gsap.context(() => {
       const photos = photoRefs.current.filter(Boolean);
       if (photos.length !== storyPhotos.length) return;
@@ -62,11 +66,11 @@ export default function FabricStory() {
     }, sectionRef);
 
     return () => context.revert();
-  }, []);
+  }, [reduceMotion]);
 
   return (
-    <section id="fabric-story" ref={sectionRef} className="relative bg-[#272421] text-[#F8F5EF] lg:h-[260svh]">
-      <div className="mx-auto grid max-w-[1600px] gap-8 px-4 py-14 sm:px-6 lg:sticky lg:top-[96px] lg:h-[calc(100svh-96px)] lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-14 lg:px-12 lg:py-8">
+    <section id="fabric-story" ref={sectionRef} className={`relative bg-[#272421] text-[#F8F5EF] ${reduceMotion ? '' : 'lg:h-[260svh]'}`}>
+      <div className={`mx-auto grid max-w-[1600px] gap-8 px-4 py-14 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-14 lg:px-12 lg:py-8 ${reduceMotion ? '' : 'lg:sticky lg:top-[96px] lg:h-[calc(100svh-96px)]'}`}>
         <div className="relative aspect-[4/3] overflow-hidden rounded-[24px] bg-[#641E32] sm:aspect-[5/4] lg:h-[min(76vh,760px)] lg:aspect-auto">
           {storyPhotos.map((storyPhoto, index) => (
             <ImageWithFallback
@@ -89,7 +93,7 @@ export default function FabricStory() {
         </div>
 
         <div className="flex flex-col justify-center lg:min-h-[520px] lg:py-10">
-          <div className="hidden lg:block">
+          <div className={reduceMotion ? 'hidden' : 'hidden lg:block'}>
             <span className="font-body text-[10px] font-semibold uppercase tracking-[0.24em] text-[#D8B7B3]">A story in every thread</span>
             <AnimatePresence mode="wait">
               <motion.div
@@ -114,7 +118,7 @@ export default function FabricStory() {
             </AnimatePresence>
           </div>
 
-          <div className="lg:hidden">
+          <div className={reduceMotion ? 'block' : 'lg:hidden'}>
             <span className="font-body text-[10px] font-semibold uppercase tracking-[0.24em] text-[#D8B7B3]">A story in every thread</span>
             <h2 className="mt-3 max-w-xl font-display text-3xl leading-tight sm:text-4xl">Texture, craft and style.</h2>
             <div className="mt-6 grid gap-5">

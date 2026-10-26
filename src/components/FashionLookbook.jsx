@@ -4,6 +4,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ImageWithFallback from './ImageWithFallback';
+import useDevice from '../hooks/useDevice';
 import { editorialPhotos, getUnsplashUrl } from '../lib/productImages';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -34,8 +35,11 @@ const looks = [
 
 export default function FashionLookbook() {
   const sectionRef = useRef(null);
+  const { reduceMotion } = useDevice();
 
   useLayoutEffect(() => {
+    if (reduceMotion) return undefined;
+
     const context = gsap.context(() => {
       const images = gsap.utils.toArray('[data-lookbook-image]');
       images.forEach((image) => {
@@ -54,7 +58,7 @@ export default function FashionLookbook() {
     }, sectionRef);
 
     return () => context.revert();
-  }, []);
+  }, [reduceMotion]);
 
   return (
     <section id="lookbook" ref={sectionRef} className="editorial-section bg-[#F8F5EF] py-16 sm:py-20 lg:py-28">

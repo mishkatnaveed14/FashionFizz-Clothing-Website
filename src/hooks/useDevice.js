@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+let webGLSupport;
+
 function getViewportInfo() {
   const width = typeof window === 'undefined' ? 0 : window.innerWidth;
   return {
@@ -15,12 +17,15 @@ function prefersReducedMotion() {
 
 function supportsWebGL() {
   if (typeof window === 'undefined') return false;
+  if (webGLSupport !== undefined) return webGLSupport;
   try {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('webgl2') || canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
     context?.getExtension('WEBGL_lose_context')?.loseContext();
-    return Boolean(context);
+    webGLSupport = Boolean(context);
+    return webGLSupport;
   } catch {
+    webGLSupport = false;
     return false;
   }
 }
