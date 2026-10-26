@@ -18,10 +18,7 @@ export default function Scene3D({ variant = 'hero', className = '', ...props }) 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return undefined;
-    if (typeof IntersectionObserver === 'undefined') {
-      setIsVisible(true);
-      return undefined;
-    }
+    if (typeof IntersectionObserver === 'undefined') return undefined;
 
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
