@@ -38,8 +38,8 @@ function TailoredTunic() {
       groupRef.current.rotation.y = Math.sin(time * 0.2) * 0.08 + progress * Math.PI * 0.95;
       groupRef.current.rotation.x = progress * 0.12;
       groupRef.current.position.y = Math.sin(time * 0.45) * 0.08 - progress * 0.38;
-      groupRef.current.position.x = (viewport.width < 6 ? 0.45 : 1.15) + progress * 1.15;
-      groupRef.current.scale.setScalar((viewport.width < 6 ? 0.8 : 1) * (1 + Math.sin(progress * Math.PI) * 0.1));
+      groupRef.current.position.x = (viewport.width < 6 ? 0.45 : 1.75) + progress * 1.15;
+      groupRef.current.scale.setScalar((viewport.width < 6 ? 0.8 : 0.78) * (1 + Math.sin(progress * Math.PI) * 0.1));
       state.camera.position.z = 6 - Math.sin(progress * Math.PI) * 0.9;
     }
   });
